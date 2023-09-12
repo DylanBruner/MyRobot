@@ -4,10 +4,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import dylanbruner.gun.MainGun;
 import dylanbruner.gun.PatternGun;
+import dylanbruner.gun.GFGun.GunTuner;
+import dylanbruner.gun.GFGun.MainGun;
 import dylanbruner.gun.Gun;
-import dylanbruner.gun.GunTuner;
 import dylanbruner.move.Surfer;
 import dylanbruner.gen.Watcher;
 

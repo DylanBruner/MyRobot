@@ -1,4 +1,4 @@
-package dylanbruner.gun;
+package dylanbruner.gun.GFGun;
 
 import java.awt.geom.Point2D;
 
@@ -9,27 +9,27 @@ import robocode.Condition;
 import robocode.util.Utils;
 
 public class GFWave extends Condition {
-    static Point2D targetLocation;
+    public static Point2D targetLocation;
 
-    double bulletPower;
-    Point2D gunLocation;
-    double bearing;
-    double lateralDirection;
+    public double bulletPower;
+    public Point2D gunLocation;
+    public double bearing;
+    public double lateralDirection;
 
     public static double MAX_DISTANCE = 1000;
     public static int DISTANCE_INDEXES = 10;
     public static int VELOCITY_INDEXES = 10;
     public static int BINS = 31;
-    private static int MIDDLE_BIN = (BINS - 1) / 2;
-    private static final double MAX_ESCAPE_ANGLE = 0.7;
-    private static double BIN_WIDTH = MAX_ESCAPE_ANGLE / (double) MIDDLE_BIN;
+    public static int MIDDLE_BIN = (BINS - 1) / 2;
+    public static final double MAX_ESCAPE_ANGLE = 0.7;
+    public static double BIN_WIDTH = MAX_ESCAPE_ANGLE / (double) MIDDLE_BIN;
 
-    private static int[][][][] statBuffers = new int[DISTANCE_INDEXES][VELOCITY_INDEXES][VELOCITY_INDEXES][BINS];
-    private static RollingAverage[][][] rollingAverages = new RollingAverage[DISTANCE_INDEXES][VELOCITY_INDEXES][VELOCITY_INDEXES];
+    public static int[][][][] statBuffers = new int[DISTANCE_INDEXES][VELOCITY_INDEXES][VELOCITY_INDEXES][BINS];
+    public static RollingAverage[][][] rollingAverages = new RollingAverage[DISTANCE_INDEXES][VELOCITY_INDEXES][VELOCITY_INDEXES];
 
-    private int[] buffer;
-    private AdvancedRobot robot;
-    private double distanceTraveled;
+    public int[] buffer;
+    public AdvancedRobot robot;
+    public double distanceTraveled;
 
     // For tuning only!!!
     public static void recalculateBuffers(int maxDistance, int distanceIndexes, int velocityIndexes, int bins) {
@@ -65,13 +65,13 @@ public class GFWave extends Condition {
         return false;
     }
 
-    double mostVisitedBearingOffset() {
+    public double mostVisitedBearingOffset() {
         // return (lateralDirection * BIN_WIDTH) * (mostVisitedBin() - MIDDLE_BIN);
         double rollingAverage = getRollingAverage(distanceTraveled, robot.getVelocity(), robot.getVelocity());
         return (lateralDirection * BIN_WIDTH) * (mostVisitedBin() - MIDDLE_BIN) + rollingAverage;
     }
 
-    void setSegmentations(double distance, double velocity, double lastVelocity) {
+    public void setSegmentations(double distance, double velocity, double lastVelocity) {
         int distanceIndex = (int) (distance / (MAX_DISTANCE / DISTANCE_INDEXES));
         int velocityIndex = (int) Math.abs(velocity / 2);
         int lastVelocityIndex = (int) Math.abs(lastVelocity / 2);
@@ -80,7 +80,7 @@ public class GFWave extends Condition {
         rollingAverages[distanceIndex][velocityIndex][lastVelocityIndex].addValue(buffer[currentBin()]);
     }
 
-    double getRollingAverage(double distance, double velocity, double lastVelocity) {
+    public double getRollingAverage(double distance, double velocity, double lastVelocity) {
         int distanceIndex = (int) (distance / (MAX_DISTANCE / DISTANCE_INDEXES));
         int velocityIndex = (int) Math.abs(velocity / 2);
         int lastVelocityIndex = (int) Math.abs(lastVelocity / 2);

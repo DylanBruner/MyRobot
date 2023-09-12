@@ -1,4 +1,4 @@
-package dylanbruner.gun;
+package dylanbruner.gun.GFGun;
 
 import robocode.*;
 import robocode.util.*;
@@ -7,6 +7,7 @@ import java.awt.geom.*;
 import dylanbruner.MyRobot;
 import dylanbruner.utils.myUtils;
 import dylanbruner.gen.Watcher;
+import dylanbruner.gun.Gun;
 
 public class MainGun extends Gun implements Watcher.EnergyListener {
     static int shots = 0;

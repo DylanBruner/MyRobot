@@ -1,4 +1,4 @@
-package dylanbruner.gun;
+package dylanbruner.gun.GFGun;
 
 import robocode.*;
 
